@@ -40,7 +40,7 @@ public class ProductService {
                 productsPage.hasPrevious());
     }
 
-//    public Optional<Product> getProductByCode(String code) {
-//        return productRepository.findByCode(code).map(ProductMapper::toProduct);
-//    }
+    public Optional<Product> getProductByCode(String code) {
+        return productRepository.findByCode(code).map(ProductMapper::toProduct);
+    }
 }

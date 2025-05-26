@@ -2,6 +2,7 @@ package org.bookstore.catalog_service.web.controllers;
 
 import org.bookstore.catalog_service.domain.PagedResult;
 import org.bookstore.catalog_service.domain.Product;
+import org.bookstore.catalog_service.domain.ProductNotFoundException;
 import org.bookstore.catalog_service.domain.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,11 @@ class ProductController {
         return productService.getProducts(pageNo);
     }
 
-//    @GetMapping("/{code}")
-//    ResponseEntity<Product> getProductByCode(@PathVariable String code) {
-//        log.info("Fetching product for code: {}", code);
-//        return productService
-//                .getProductByCode(code)
-//                .map(ResponseEntity::ok)
-//                .orElseThrow(() -> ProductNotFoundException.forCode(code));
-//    }
+    @GetMapping("/{code}")
+    ResponseEntity<Product> getProductByCode(@PathVariable String code) {
+        return productService
+                .getProductByCode(code)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> ProductNotFoundException.forCode(code));
+        }
 }
